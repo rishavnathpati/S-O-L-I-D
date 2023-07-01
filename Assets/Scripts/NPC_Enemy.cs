@@ -1,21 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class NPC_Enemy : MonoBehaviour
+public class NPCEnemy : MonoBehaviour
 {
-    public GameObject ui_window;
+    public GameObject uiWindow;
     public AudioSource audioSource;
     public Text textField;
     public string text = "I deal 10 physical damage    ( •̀ᴗ•́ )و ̑̑ ";
 
     public void GetHit()
     {
-        ui_window.SetActive(true);
+        uiWindow.SetActive(true);
         textField.text = text;
         audioSource.Play();
-        FindObjectOfType<Player>().ReceiveDamaged();
+        FindObjectOfType<Player>().ReceiveDamage();
     }
-
 }

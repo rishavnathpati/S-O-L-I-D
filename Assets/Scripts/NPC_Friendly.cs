@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class NPC_Friendly : MonoBehaviour
+public class NPCFriendly : MonoBehaviour
 {
-    public GameObject ui_window;
+    [FormerlySerializedAs("ui_window")] public GameObject uiWindow;
     public AudioSource audioSource;
     public Text textField;
     public string text = "Hi there. Look out for that KOBOLD on the other side!";
 
     public void Talk()
     {
-        ui_window.SetActive(true);
+        uiWindow.SetActive(true);
         textField.text = text;
         audioSource.Play();
-        
     }
 }

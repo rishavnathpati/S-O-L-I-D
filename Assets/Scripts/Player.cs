@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,26 +9,25 @@ public class Player : MonoBehaviour
 
     public Transform raycastPoint;
     
-    public float movementSpeed;
+    public PlayerMovement playerMovement;
 
-    public GameObject ui_window;
+    public GameObject uiWindow;
 
-    private Rigidbody2D rb2d;
-    private Vector2 movementVector;
+    // private Rigidbody2D _rb2d;
+    
+    private Vector2 _movementVector;
+    private static readonly int Walk = Animator.StringToHash("Walk");
 
-    private void Awake()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
+   
 
     private void Start()
     {
-        SceneManager.LoadScene("PremadeLevel", LoadSceneMode.Additive);
+        playerMovement = GetComponent<PlayerMovement>();
     }
     private void Update()
     {
-        movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        movementVector.Normalize();
+        _movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        _movementVector.Normalize();
         if (Input.GetAxisRaw("Fire1") > 0)
         {
             Interact();
@@ -39,14 +36,14 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer(movementVector);
-        if (movementVector.magnitude > 0)
+        MovePlayer(_movementVector);
+        if (_movementVector.magnitude > 0)
         {
-            ui_window.SetActive(false);
+            uiWindow.SetActive(false);
         }
         else
         {
-            playerAnimator.SetBool("Walk", false);
+            playerAnimator.SetBool(Walk, false);
         }
     }
 
@@ -56,13 +53,13 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(raycastPoint.position, playerRenderer.flipX ? Vector3.left : Vector3.right,1);
         if(hit.collider != null)
         {
-            if (hit.collider.GetComponent<NPC_Enemy>())
+            if (hit.collider.GetComponent<NPCEnemy>())
             {
-                hit.collider.GetComponent<NPC_Enemy>().GetHit();
+                hit.collider.GetComponent<NPCEnemy>().GetHit();
             }
-            else if (hit.collider.GetComponent<NPC_Friendly>())
+            else if (hit.collider.GetComponent<NPCFriendly>())
             {
-                hit.collider.GetComponent<NPC_Friendly>().Talk();
+                hit.collider.GetComponent<NPCFriendly>().Talk();
             }
         }
 
@@ -70,15 +67,14 @@ public class Player : MonoBehaviour
 
     private void MovePlayer(Vector2 movementVector)
     {
-        playerAnimator.SetBool("Walk", true);
+        playerAnimator.SetBool(Walk, true);
         //rb2d.MovePosition(rb2d.position + movementVector * movementSpeed * Time.fixedDeltaTime);
-        rb2d.velocity = movementVector * movementSpeed;
-
+        playerMovement.MovePlayer(movementVector);
         if (Mathf.Abs(movementVector.x) > 0.1f)
             playerRenderer.flipX = Vector3.Dot(transform.right, movementVector) < 0;
     }
 
-    public void ReceiveDamaged()
+    public void ReceiveDamage()
     {
         StopAllCoroutines();
         StartCoroutine(FlashRed());

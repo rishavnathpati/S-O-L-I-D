@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAIInteractions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform raycastPoint;
 
-    // Update is called once per frame
-    void Update()
+    public void Interact(bool isSpriteFlipped)
     {
-        
+        Debug.DrawRay(raycastPoint.position, isSpriteFlipped ? Vector3.left : Vector3.right, Color.red);
+        var hit = Physics2D.Raycast(raycastPoint.position, isSpriteFlipped ? Vector3.left : Vector3.right, 1);
+        if (hit.collider != null)
+        {
+            if (hit.collider.GetComponent<NPCEnemy>())
+                hit.collider.GetComponent<NPCEnemy>().GetHit();
+            else if (hit.collider.GetComponent<NPCFriendly>()) hit.collider.GetComponent<NPCFriendly>().Talk();
+        }
     }
 }

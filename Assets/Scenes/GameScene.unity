@@ -287,16 +287,16 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 844677122}
   m_Father: {fileID: 1985489270}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -256.6}
-  m_SizeDelta: {x: -573.95056, y: -527.96106}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 75}
+  m_SizeDelta: {x: 1180, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614753884
 MonoBehaviour:
@@ -645,10 +645,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8018209984eef8f4fbea62463c39488c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiWindow: {fileID: 614753882}
   audioSource: {fileID: 673353965}
-  textField: {fileID: 844677124}
-  text: "I deal 10 physical damage    ( \u2022\u0300\u1D17\u2022\u0301 )\u0648 \u0311\u0311 "
+  text: "I deal 10 physical damage    ( \u2022\u0300\u1D17\u2022\u0301 )\u0648 \u0311\u0311"
+  onSpeak:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 837455041}
+        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &673353965
 AudioSource:
   m_ObjectHideFlags: 0
@@ -990,6 +1003,7 @@ GameObject:
   - component: {fileID: 837455038}
   - component: {fileID: 837455037}
   - component: {fileID: 837455036}
+  - component: {fileID: 837455041}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1088,12 +1102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2c8fa133a33eb42a83972bb1e030f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 815885425}
   playerAIInteractions: {fileID: 0}
   playerMovement: {fileID: 837455035}
-  uiWindow: {fileID: 614753882}
   playerRenderer: {fileID: 0}
   playerInput: {fileID: 0}
+  playerAnimations: {fileID: 0}
+  uiController: {fileID: 0}
 --- !u!82 &837455034
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1254,6 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6077e04395cb479f8979c6813e94cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 815885425}
 --- !u!114 &837455040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1266,6 +1281,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4277d4b11c4c44685bd12ee72333d14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &837455041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837455029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2fba2b2db8f4834ac4239c498e338f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiWindow: {fileID: 614753882}
+  textField: {fileID: 844677124}
 --- !u!1 &844677121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,12 +1645,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1852,10 +1881,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afdfc58194c026447af37c64c00132a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiWindow: {fileID: 614753882}
   audioSource: {fileID: 1998702843}
-  textField: {fileID: 844677124}
   text: Hi there. Look out for that KOBOLD on the other side!
+  onSpeak:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 837455041}
+        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &1998702843
 AudioSource:
   m_ObjectHideFlags: 0

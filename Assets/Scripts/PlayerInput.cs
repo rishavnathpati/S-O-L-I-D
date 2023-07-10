@@ -4,14 +4,14 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public Vector2 MovementInputVector { get; private set; }
-    
-    public event Action OnInteractEvent;
-    
+
     private void Update()
     {
         GetInteractInput();
         GetMovementInput();
     }
+
+    public event Action OnInteractEvent;
 
     private void GetMovementInput()
     {

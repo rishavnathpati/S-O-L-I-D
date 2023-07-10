@@ -4,29 +4,32 @@ public class Player : MonoBehaviour
 {
     public PlayerAIInteractions playerAIInteractions;
     public PlayerMovement playerMovement;
-    public GameObject uiWindow;
     public PlayerRenderer playerRenderer;
     public PlayerInput playerInput;
     public PlayerAnimations playerAnimations;
+    public UiController uiController;
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerRenderer = GetComponent<PlayerRenderer>();
-        playerAIInteractions = GetComponent<PlayerAIInteractions>(); 
+        playerAIInteractions = GetComponent<PlayerAIInteractions>();
         playerInput = GetComponent<PlayerInput>();
         playerAnimations = GetComponent<PlayerAnimations>();
-        
+        uiController = GetComponent<UiController>();
+
         playerInput.OnInteractEvent += () => playerAIInteractions.Interact(playerRenderer.IsSpriteFlipped);
     }
 
     private void FixedUpdate()
     {
-        playerMovement.MovePlayer(playerInput.MovementInputVector);
-        playerRenderer.RenderPlayer(playerInput.MovementInputVector);        
-        playerAnimations.SetupAnimations(playerInput.MovementInputVector);    
+        var playerInputMovementInputVector = playerInput.MovementInputVector;
+        playerMovement.MovePlayer(playerInputMovementInputVector);
+        playerRenderer.RenderPlayer(playerInputMovementInputVector);
+        playerAnimations.SetupAnimations(playerInputMovementInputVector);
 
-        if (playerInput.MovementInputVector.magnitude > 0)
-            uiWindow.SetActive(false);
+        if (playerInputMovementInputVector.magnitude > 0)
+            uiController.SetInteractionUiActive(false);
     }
 
     public void ReceiveDamage()

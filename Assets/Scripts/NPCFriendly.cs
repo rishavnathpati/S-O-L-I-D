@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+
 public class NPCFriendly : MonoBehaviour
 {
     public AudioSource audioSource;

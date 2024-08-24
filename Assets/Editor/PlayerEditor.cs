@@ -1,40 +1,43 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Player))]
-public class PlayerEditor : Editor
+namespace Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(Player))]
+    public class PlayerEditor : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
-
-        var player = (Player)target;
-
-        if (GUILayout.Button("Add Required Components")) AddRequiredComponents(player);
-    }
-
-    private void AddRequiredComponents(Player player)
-    {
-        if (player != null)
+        public override void OnInspectorGUI()
         {
-            if (player.playerAIInteractions == null)
-                player.playerAIInteractions = player.gameObject.AddComponent<PlayerAIInteractions>();
+            base.OnInspectorGUI();
 
-            if (player.playerMovement == null) player.playerMovement = player.gameObject.AddComponent<PlayerMovement>();
+            var player = (Player)target;
 
-            if (player.playerRenderer == null) player.playerRenderer = player.gameObject.AddComponent<PlayerRenderer>();
+            if (GUILayout.Button("Add Required Components")) AddRequiredComponents(player);
+        }
 
-            if (player.playerInput == null) player.playerInput = player.gameObject.AddComponent<PlayerInput>();
+        private static void AddRequiredComponents(Player player)
+        {
+            if (player != null)
+            {
+                if (player.playerAIInteractions == null)
+                    player.playerAIInteractions = player.gameObject.AddComponent<PlayerAIInteractions>();
 
-            if (player.playerAnimations == null)
-                player.playerAnimations = player.gameObject.AddComponent<PlayerAnimations>();
+                if (player.playerMovement == null) player.playerMovement = player.gameObject.AddComponent<PlayerMovement>();
 
-            if (player.uiController == null) player.uiController = player.gameObject.AddComponent<UiController>();
+                if (player.playerRenderer == null) player.playerRenderer = player.gameObject.AddComponent<PlayerRenderer>();
 
-            player.playerInput.OnInteractEvent += () =>
-                player.playerAIInteractions.Interact(player.playerRenderer.IsSpriteFlipped);
+                if (player.playerInput == null) player.playerInput = player.gameObject.AddComponent<PlayerInput>();
 
-            Debug.Log("Required components added.");
+                if (player.playerAnimations == null)
+                    player.playerAnimations = player.gameObject.AddComponent<PlayerAnimations>();
+
+                if (player.uiController == null) player.uiController = player.gameObject.AddComponent<UiController>();
+
+                player.playerInput.OnInteractEvent += () =>
+                    player.playerAIInteractions.Interact(player.playerRenderer.IsSpriteFlipped);
+
+                Debug.Log("Required components added.");
+            }
         }
     }
 }

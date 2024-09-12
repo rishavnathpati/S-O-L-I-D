@@ -10,7 +10,7 @@ namespace Editor
         {
             base.OnInspectorGUI();
 
-            var player = (Player)target;
+            Player player = (Player)target;
 
             if (GUILayout.Button("Add Required Components")) AddRequiredComponents(player);
         }
@@ -19,22 +19,22 @@ namespace Editor
         {
             if (player != null)
             {
-                if (player.playerAIInteractions == null)
-                    player.playerAIInteractions = player.gameObject.AddComponent<PlayerAIInteractions>();
+                if (player.playerAiInteractions == null)
+                    player.playerAiInteractions = player.gameObject.AddComponent<PlayerAIInteractions>();
 
                 if (player.playerMovement == null) player.playerMovement = player.gameObject.AddComponent<PlayerMovement>();
 
                 if (player.playerRenderer == null) player.playerRenderer = player.gameObject.AddComponent<PlayerRenderer>();
 
-                if (player.playerInput == null) player.playerInput = player.gameObject.AddComponent<PlayerInput>();
+                if (player.movementInput == null) player.movementInput = player.gameObject.AddComponent<PlayerInput>();
 
                 if (player.playerAnimations == null)
                     player.playerAnimations = player.gameObject.AddComponent<PlayerAnimations>();
 
                 if (player.uiController == null) player.uiController = player.gameObject.AddComponent<UiController>();
 
-                player.playerInput.OnInteractEvent += () =>
-                    player.playerAIInteractions.Interact(player.playerRenderer.IsSpriteFlipped);
+                player.movementInput.OnInteractEvent += () =>
+                    player.playerAiInteractions.Interact(player.playerRenderer.IsSpriteFlipped);
 
                 Debug.Log("Required components added.");
             }

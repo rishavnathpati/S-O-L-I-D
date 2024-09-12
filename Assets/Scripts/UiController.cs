@@ -1,19 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiController : MonoBehaviour
 {
-    [SerializeField] private GameObject uiWindow;
-    [SerializeField] private Text textField;
+    [SerializeField]
+    private GameObject ui_window;
+    [SerializeField]
+    private Text textField;
 
-    public void SetInteractionUiActive(bool active)
+    public void ToggleUI(bool val)
     {
-        uiWindow.SetActive(active);
+        ui_window.SetActive(val);
     }
 
-    public void SetText(string text)
+    public void ShowText(string text)
     {
-        SetInteractionUiActive(true);
+        ToggleUI(true);
         textField.text = text;
     }
 }

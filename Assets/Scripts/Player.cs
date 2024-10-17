@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
         playerAiInteractions = GetComponent<PlayerAIInteractions>();
         movementInput = GetComponent<IMovementInput>();
         movementInput.OnInteractEvent += () => playerAiInteractions.Interact(playerRenderer.IsSpriteFlipped);
-
     }
 
     private void FixedUpdate()
@@ -26,7 +25,7 @@ public class Player : MonoBehaviour
         playerMovement.MovePlayer(movementInput.MovementInputVector);
         playerRenderer.RenderePlayer(movementInput.MovementInputVector);
         playerAnimations.SetupAnimations(movementInput.MovementInputVector);
-        
+
         if (movementInput.MovementInputVector.magnitude > 0)
         {
             uiController.ToggleUI(false);
@@ -37,6 +36,4 @@ public class Player : MonoBehaviour
     {
         playerRenderer.FlashRed();
     }
-
-    
 }

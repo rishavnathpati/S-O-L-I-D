@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerRenderer : MonoBehaviour
 {
     public SpriteRenderer playerRenderer;
 
-    public bool IsSpriteFlipped { get => playerRenderer.flipX;}
+    public bool IsSpriteFlipped { get => playerRenderer.flipX; }
 
     internal void RenderePlayer(Vector2 movementVector)
     {

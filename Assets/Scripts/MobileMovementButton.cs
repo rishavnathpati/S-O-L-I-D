@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MobileMovementButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler

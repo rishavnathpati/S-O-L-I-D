@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public interface IMovementInput
 {
-    Vector2 MovementInputVector { get;}
+    Vector2 MovementInputVector { get; }
     event Action OnInteractEvent;
 }

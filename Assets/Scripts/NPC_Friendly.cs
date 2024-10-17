@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class NPC_Friendly : MonoBehaviour
@@ -11,6 +11,5 @@ public class NPC_Friendly : MonoBehaviour
     {
         OnSpeak?.Invoke(text);
         audioSource.Play();
-        
     }
 }

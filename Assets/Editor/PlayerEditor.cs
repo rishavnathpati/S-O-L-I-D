@@ -31,7 +31,7 @@ namespace Editor
                 if (player.playerAnimations == null)
                     player.playerAnimations = player.gameObject.AddComponent<PlayerAnimations>();
 
-                if (player.uiController == null) player.uiController = player.gameObject.AddComponent<UIController>();
+                if (player.uiController == null) player.uiController = player.gameObject.AddComponent<UiController>();
 
                 player.movementInput.OnInteractEvent += () =>
                     player.playerAiInteractions.Interact(player.playerRenderer.IsSpriteFlipped);

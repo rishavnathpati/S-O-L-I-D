@@ -1,55 +1,39 @@
 using UnityEngine;
 
-/// <summary>
-/// Represents the main player character and manages its components and behaviors.
-/// </summary>
 public class Player : MonoBehaviour
 {
-    private const float MOVEMENT_THRESHOLD = 0.01f;
+    public PlayerMovement playerMovement;
+    public PlayerRenderer playerRenderer;
+    public PlayerAIInteractions playerAiInteractions;
+    public IMovementInput movementInput;
+    public PlayerAnimations playerAnimations;
 
-    [SerializeField] private PlayerMovement _playerMovement;
-    [SerializeField] private PlayerRenderer _playerRenderer;
-    [SerializeField] private PlayerAIInteractions _playerAiInteractions;
-    [SerializeField] private PlayerAnimations _playerAnimations;
-    [SerializeField] private UiController _uiController;
-
-    private IMovementInput _movementInput;
+    public UiController uiController;
 
     private void Start()
     {
-        _playerAnimations = GetComponent<PlayerAnimations>();
-        _playerMovement = GetComponent<PlayerMovement>();
-        _playerRenderer = GetComponent<PlayerRenderer>();
-        _playerAiInteractions = GetComponent<PlayerAIInteractions>();
-        _movementInput = GetComponent<IMovementInput>();
-        _movementInput.OnInteractEvent += () =>
-        {
-            if (_playerAiInteractions != null)
-            {
-                _playerAiInteractions.Interact(_playerRenderer.IsSpriteFlipped);
-            }
-        };
+        playerAnimations = GetComponent<PlayerAnimations>();
+        playerMovement = GetComponent<PlayerMovement>();
+        playerRenderer = GetComponent<PlayerRenderer>();
+        playerAiInteractions = GetComponent<PlayerAIInteractions>();
+        movementInput = GetComponent<IMovementInput>();
+        movementInput.OnInteractEvent += () => playerAiInteractions.Interact(playerRenderer.IsSpriteFlipped);
     }
 
     private void FixedUpdate()
     {
-        Vector2 movementInput = _movementInput.MovementInputVector;
+        playerMovement.MovePlayer(movementInput.MovementInputVector);
+        playerRenderer.RenderePlayer(movementInput.MovementInputVector);
+        playerAnimations.SetupAnimations(movementInput.MovementInputVector);
 
-        _playerMovement.MovePlayer(movementInput);
-        _playerRenderer.RenderPlayer(movementInput);
-        _playerAnimations.SetupAnimations(movementInput);
-
-        if (movementInput.magnitude > MOVEMENT_THRESHOLD)
+        if (movementInput.MovementInputVector.magnitude > 0)
         {
-            _uiController.ToggleUI(false);
+            uiController.ToggleUI(false);
         }
     }
 
-    /// <summary>
-    /// Handles the player receiving damage.
-    /// </summary>
-    public void ReceiveDamage()
+    public void ReceiveDamaged()
     {
-        _playerRenderer.FlashRed();
+        playerRenderer.FlashRed();
     }
 }

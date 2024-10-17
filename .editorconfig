@@ -1,21 +1,22 @@
-# EditorConfig for Unity C# projects: https://EditorConfig.org
+# EditorConfig is awesome: https://EditorConfig.org
 
 # top-most EditorConfig file
 root = true
 
-# All files
+# Unix-style newlines with a newline ending every file
 [*]
-indent_style = space
-indent_size = 4
 end_of_line = lf
+insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
-insert_final_newline = true
 
-# Unity-specific file types
-[*.{anim,asset,mat,meta,prefab,unity}]
+# 4 space indentation
+[*.{cs,unity}]
 indent_style = space
-indent_size = 2
+indent_size = 4
+
+# Max line length
+max_line_length = 120
 
 # C# files
 [*.cs]
@@ -32,15 +33,13 @@ csharp_new_line_between_query_expression_clauses = true
 csharp_indent_case_contents = true
 csharp_indent_switch_labels = true
 csharp_indent_labels = flush_left
-csharp_indent_block_contents = true
-csharp_indent_braces = false
-csharp_indent_case_contents_when_block = true
 
 # Space preferences
 csharp_space_after_cast = false
 csharp_space_after_keywords_in_control_flow_statements = true
 csharp_space_between_method_declaration_parameter_list_parentheses = false
 csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_between_parentheses = false
 csharp_space_before_colon_in_inheritance_clause = true
 csharp_space_after_colon_in_inheritance_clause = true
 csharp_space_around_binary_operators = before_and_after
@@ -49,172 +48,5 @@ csharp_space_between_method_call_name_and_opening_parenthesis = false
 csharp_space_between_method_call_empty_parameter_list_parentheses = false
 
 # Wrapping preferences
-csharp_preserve_single_line_statements = false
+csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
-
-# 'using' directive preferences
-csharp_using_directive_placement = outside_namespace:warning
-
-# Naming Conventions
-# Interfaces should start with 'I'
-dotnet_naming_rule.interface_should_begin_with_i.severity = error
-dotnet_naming_rule.interface_should_begin_with_i.symbols = interface
-dotnet_naming_rule.interface_should_begin_with_i.style = begins_with_i
-
-dotnet_naming_symbols.interface.applicable_kinds = interface
-dotnet_naming_symbols.interface.applicable_accessibilities = *
-
-dotnet_naming_style.begins_with_i.required_prefix = I
-dotnet_naming_style.begins_with_i.capitalization = pascal_case
-
-# Classes, structs, methods, enums, events, properties, namespaces should be PascalCase
-dotnet_naming_rule.pascal_case_for_class_struct_method_enum_event_property_namespace.severity = error
-dotnet_naming_rule.pascal_case_for_class_struct_method_enum_event_property_namespace.symbols = class_struct_method_enum_event_property_namespace
-dotnet_naming_rule.pascal_case_for_class_struct_method_enum_event_property_namespace.style = pascal_case
-
-dotnet_naming_symbols.class_struct_method_enum_event_property_namespace.applicable_kinds = class,struct,method,enum,event,property,namespace
-dotnet_naming_symbols.class_struct_method_enum_event_property_namespace.applicable_accessibilities = *
-
-dotnet_naming_style.pascal_case.capitalization = pascal_case
-
-# Parameters and local variables should be camelCase
-dotnet_naming_rule.camel_case_for_parameters_and_local_variables.severity = error
-dotnet_naming_rule.camel_case_for_parameters_and_local_variables.symbols = parameters_and_local_variables
-dotnet_naming_rule.camel_case_for_parameters_and_local_variables.style = camel_case
-
-dotnet_naming_symbols.parameters_and_local_variables.applicable_kinds = parameter,local
-dotnet_naming_symbols.parameters_and_local_variables.applicable_accessibilities = *
-
-dotnet_naming_style.camel_case.capitalization = camel_case
-
-# Private fields should start with an underscore and be camelCase
-dotnet_naming_rule.private_fields_should_begin_with_underscore.severity = error
-dotnet_naming_rule.private_fields_should_begin_with_underscore.symbols = private_fields
-dotnet_naming_rule.private_fields_should_begin_with_underscore.style = begins_with_underscore
-
-dotnet_naming_symbols.private_fields.applicable_kinds = field
-dotnet_naming_symbols.private_fields.applicable_accessibilities = private
-
-dotnet_naming_style.begins_with_underscore.required_prefix = _
-dotnet_naming_style.begins_with_underscore.capitalization = camel_case
-
-# Constants should be ALL_CAPS
-dotnet_naming_rule.constants_should_be_all_caps.severity = error
-dotnet_naming_rule.constants_should_be_all_caps.symbols = constants
-dotnet_naming_rule.constants_should_be_all_caps.style = all_caps
-
-dotnet_naming_symbols.constants.applicable_kinds = field
-dotnet_naming_symbols.constants.required_modifiers = const
-
-dotnet_naming_style.all_caps.capitalization = all_upper
-dotnet_naming_style.all_caps.word_separator = _
-
-# Unity-specific naming conventions
-dotnet_naming_rule.unity_serialized_field_rule.severity = error
-dotnet_naming_rule.unity_serialized_field_rule.symbols = unity_serialized_field
-dotnet_naming_rule.unity_serialized_field_rule.style = unity_serialized_field_style
-
-dotnet_naming_symbols.unity_serialized_field.applicable_kinds = field
-dotnet_naming_symbols.unity_serialized_field.applicable_accessibilities = private
-dotnet_naming_symbols.unity_serialized_field.required_modifiers = 
-
-dotnet_naming_style.unity_serialized_field_style.capitalization = camel_case
-dotnet_naming_style.unity_serialized_field_style.required_prefix = 
-
-# Code style defaults
-dotnet_sort_system_directives_first = true
-csharp_prefer_braces = true:warning
-csharp_preserve_single_line_blocks = true
-csharp_preserve_single_line_statements = false
-csharp_prefer_simple_using_statement = true:suggestion
-csharp_style_prefer_switch_expression = true:suggestion
-
-# Expression-level preferences
-dotnet_style_object_initializer = true:suggestion
-dotnet_style_collection_initializer = true:suggestion
-dotnet_style_explicit_tuple_names = true:suggestion
-dotnet_style_coalesce_expression = true:suggestion
-dotnet_style_null_propagation = true:suggestion
-dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
-dotnet_style_prefer_inferred_tuple_names = true:suggestion
-dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
-dotnet_style_prefer_auto_properties = true:suggestion
-dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
-dotnet_style_prefer_conditional_expression_over_return = true:suggestion
-csharp_prefer_simple_default_expression = true:suggestion
-
-# Expression-bodied members
-csharp_style_expression_bodied_methods = when_on_single_line:suggestion
-csharp_style_expression_bodied_constructors = false:suggestion
-csharp_style_expression_bodied_operators = when_on_single_line:suggestion
-csharp_style_expression_bodied_properties = when_on_single_line:suggestion
-csharp_style_expression_bodied_indexers = when_on_single_line:suggestion
-csharp_style_expression_bodied_accessors = when_on_single_line:suggestion
-csharp_style_expression_bodied_lambdas = when_on_single_line:suggestion
-csharp_style_expression_bodied_local_functions = when_on_single_line:suggestion
-
-# Pattern matching
-csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
-csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
-csharp_style_inlined_variable_declaration = true:suggestion
-
-# Null checking preferences
-csharp_style_throw_expression = true:suggestion
-csharp_style_conditional_delegate_call = true:suggestion
-
-# Other features
-csharp_style_prefer_index_operator = true:suggestion
-csharp_style_prefer_range_operator = true:suggestion
-csharp_style_pattern_local_over_anonymous_function = true:suggestion
-
-# Space preferences
-csharp_space_after_cast = false
-csharp_space_after_colon_in_inheritance_clause = true
-csharp_space_after_comma = true
-csharp_space_after_dot = false
-csharp_space_after_keywords_in_control_flow_statements = true
-csharp_space_after_semicolon_in_for_statement = true
-csharp_space_around_binary_operators = before_and_after
-csharp_space_around_declaration_statements = do_not_ignore
-csharp_space_before_colon_in_inheritance_clause = true
-csharp_space_before_comma = false
-csharp_space_before_dot = false
-csharp_space_before_open_square_brackets = false
-csharp_space_before_semicolon_in_for_statement = false
-csharp_space_between_empty_square_brackets = false
-csharp_space_between_method_call_empty_parameter_list_parentheses = false
-csharp_space_between_method_call_name_and_opening_parenthesis = false
-csharp_space_between_method_call_parameter_list_parentheses = false
-csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
-csharp_space_between_method_declaration_name_and_open_parenthesis = false
-csharp_space_between_method_declaration_parameter_list_parentheses = false
-csharp_space_between_parentheses = false
-csharp_space_between_square_brackets = false
-
-# Analyzers
-dotnet_code_quality.ca1802.api_surface = private, internal
-dotnet_code_quality.ca2208.api_surface = public
-
-# Unity-specific analyzers
-dotnet_diagnostic.UNT0001.severity = warning  # Unity objects should not use null propagation
-dotnet_diagnostic.UNT0002.severity = warning  # GameObject.Find is not recommended
-dotnet_diagnostic.UNT0003.severity = warning  # Usage of non-generic GetComponent
-dotnet_diagnostic.UNT0004.severity = warning  # Time.fixedDeltaTime should not be assigned to
-dotnet_diagnostic.UNT0005.severity = warning  # Inefficient tag comparison
-dotnet_diagnostic.UNT0006.severity = warning  # Incorrect message signature
-dotnet_diagnostic.UNT0007.severity = warning  # Null coalescing on Unity objects
-dotnet_diagnostic.UNT0008.severity = warning  # Null propagation on Unity objects
-dotnet_diagnostic.UNT0009.severity = warning  # Missing static constructor for MonoBehaviour
-
-# C# 9.0+ features
-csharp_style_prefer_pattern_matching = true:suggestion
-csharp_style_prefer_not_pattern = true:suggestion
-csharp_style_prefer_extended_property_pattern = true:suggestion
-
-# License header
-file_header_template = Copyright (c) {year} {company}. All rights reserved.\nLicensed under the {license} license. See LICENSE file in the project root for full license information.
-
-# Ignore Unity-generated files
-[{**/Library/**,**/ProjectSettings/**,**/Temp/**,**/obj/**}]
-generated_code = true
-dotnet_analyzer_diagnostic.severity = none

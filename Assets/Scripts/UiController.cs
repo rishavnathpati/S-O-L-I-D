@@ -4,18 +4,18 @@ using UnityEngine.UI;
 public class UiController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject ui_window;
+    private GameObject _uiWindow;
     [SerializeField]
-    private Text textField;
+    private Text _textField;
 
     public void ToggleUI(bool val)
     {
-        ui_window.SetActive(val);
+        _uiWindow.SetActive(val);
     }
 
     public void ShowText(string text)
     {
         ToggleUI(true);
-        textField.text = text;
+        _textField.text = text;
     }
 }

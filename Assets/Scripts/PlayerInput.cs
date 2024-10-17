@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour, IMovementInput
 {
-    public Vector2 MovementInputVector { get; private set; }
-    public event Action OnInteractEvent;
-
     private void Update()
     {
         GetInteractInput();
         GetMovementInput();
     }
+
+    public Vector2 MovementInputVector { get; private set; }
+    public event Action OnInteractEvent;
 
     private void GetMovementInput()
     {
@@ -20,9 +20,6 @@ public class PlayerInput : MonoBehaviour, IMovementInput
 
     private void GetInteractInput()
     {
-        if (Input.GetAxisRaw("Fire1") > 0)
-        {
-            OnInteractEvent?.Invoke();
-        }
+        if (Input.GetAxisRaw("Fire1") > 0) OnInteractEvent?.Invoke();
     }
 }

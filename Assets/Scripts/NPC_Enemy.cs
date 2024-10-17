@@ -11,7 +11,6 @@ public class NPC_Enemy : MonoBehaviour
     {
         OnSpeak?.Invoke(text);
         audioSource.Play();
-        FindObjectOfType<Player>().ReceiveDamaged();
+        FindObjectOfType<Player>().ReceiveDamage();
     }
-
 }

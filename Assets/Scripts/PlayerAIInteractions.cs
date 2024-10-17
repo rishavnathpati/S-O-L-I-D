@@ -11,14 +11,8 @@ public class PlayerAIInteractions : MonoBehaviour
         if (hit.collider != null)
         {
             if (hit.collider.GetComponent<NPC_Enemy>())
-            {
                 hit.collider.GetComponent<NPC_Enemy>().GetHit();
-            }
-            else if (hit.collider.GetComponent<NPC_Friendly>())
-            {
-                hit.collider.GetComponent<NPC_Friendly>().Talk();
-            }
+            else if (hit.collider.GetComponent<NPC_Friendly>()) hit.collider.GetComponent<NPC_Friendly>().Talk();
         }
-
     }
 }

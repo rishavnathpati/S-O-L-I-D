@@ -5,6 +5,7 @@ public class MobileMovementButton : MonoBehaviour, IPointerDownHandler, IPointer
 {
     public PlayermobileInput input;
     public Vector2 movementDirection;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         input.GetMovementinput(movementDirection);

@@ -5,10 +5,9 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerRenderer playerRenderer;
     public PlayerAIInteractions playerAiInteractions;
-    public IMovementInput movementInput;
     public PlayerAnimations playerAnimations;
-
     public UiController uiController;
+    public IMovementInput movementInput;
 
     private void Start()
     {
@@ -23,16 +22,13 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         playerMovement.MovePlayer(movementInput.MovementInputVector);
-        playerRenderer.RenderePlayer(movementInput.MovementInputVector);
+        playerRenderer.RenderPlayer(movementInput.MovementInputVector);
         playerAnimations.SetupAnimations(movementInput.MovementInputVector);
 
-        if (movementInput.MovementInputVector.magnitude > 0)
-        {
-            uiController.ToggleUI(false);
-        }
+        if (movementInput.MovementInputVector.magnitude > 0) uiController.ToggleUI(false);
     }
 
-    public void ReceiveDamaged()
+    public void ReceiveDamage()
     {
         playerRenderer.FlashRed();
     }

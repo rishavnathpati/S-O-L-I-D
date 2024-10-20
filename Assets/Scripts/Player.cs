@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public PlayerAIInteractions playerAiInteractions;
     public PlayerAnimations playerAnimations;
     public UiController uiController;
-    public IMovementInput movementInput;
+    public IMovementInput MovementInput;
 
     private void Start()
     {
@@ -15,21 +15,21 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerRenderer = GetComponent<PlayerRenderer>();
         playerAiInteractions = GetComponent<PlayerAIInteractions>();
-        movementInput = GetComponent<IMovementInput>();
-        movementInput.OnInteractEvent += () => playerAiInteractions.Interact(playerRenderer.IsSpriteFlipped);
+        MovementInput = GetComponent<IMovementInput>();
+        MovementInput.OnInteractEvent += () => playerAiInteractions.Interact(playerRenderer.IsSpriteFlipped);
     }
 
     private void FixedUpdate()
     {
-        playerMovement.MovePlayer(movementInput.MovementInputVector);
-        playerRenderer.RenderPlayer(movementInput.MovementInputVector);
-        playerAnimations.SetupAnimations(movementInput.MovementInputVector);
+        playerMovement.MovePlayer(MovementInput.MovementInputVector);
+        playerRenderer.RenderPlayer(MovementInput.MovementInputVector);
+        playerAnimations.SetupAnimations(MovementInput.MovementInputVector);
 
-        if (movementInput.MovementInputVector.magnitude > 0) uiController.ToggleUI(false);
+        if (MovementInput.MovementInputVector.magnitude > 0)
+        {
+            uiController.ToggleUI(false);
+        }
     }
 
-    public void ReceiveDamage()
-    {
-        playerRenderer.FlashRed();
-    }
+    public void ReceiveDamage() => playerRenderer.FlashRed();
 }

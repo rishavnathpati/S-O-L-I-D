@@ -7,18 +7,9 @@ public class PlayermobileInput : MonoBehaviour, IMovementInput
 
     public event Action OnInteractEvent;
 
-    public void GetMovementinput(Vector2 direction)
-    {
-        MovementInputVector = direction;
-    }
+    public void GetMovementinput(Vector2 direction) => MovementInputVector = direction;
 
-    public void Interactinput()
-    {
-        OnInteractEvent?.Invoke();
-    }
+    public void Interactinput() => OnInteractEvent?.Invoke();
 
-    public void ResetInput()
-    {
-        MovementInputVector = Vector2.zero;
-    }
+    public void ResetInput() => MovementInputVector = Vector2.zero;
 }

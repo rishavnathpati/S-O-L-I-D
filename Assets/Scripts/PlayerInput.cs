@@ -20,6 +20,9 @@ public class PlayerInput : MonoBehaviour, IMovementInput
 
     private void GetInteractInput()
     {
-        if (Input.GetAxisRaw("Fire1") > 0) OnInteractEvent?.Invoke();
+        if (Input.GetAxisRaw("Fire1") > 0)
+        {
+            OnInteractEvent?.Invoke();
+        }
     }
 }

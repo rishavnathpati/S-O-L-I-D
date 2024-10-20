@@ -26,14 +26,14 @@ namespace Editor
 
                 if (player.playerRenderer == null) player.playerRenderer = player.gameObject.AddComponent<PlayerRenderer>();
 
-                if (player.movementInput == null) player.movementInput = player.gameObject.AddComponent<PlayerInput>();
+                if (player.MovementInput == null) player.MovementInput = player.gameObject.AddComponent<PlayerInput>();
 
                 if (player.playerAnimations == null)
                     player.playerAnimations = player.gameObject.AddComponent<PlayerAnimations>();
 
                 if (player.uiController == null) player.uiController = player.gameObject.AddComponent<UiController>();
 
-                player.movementInput.OnInteractEvent += () =>
+                player.MovementInput.OnInteractEvent += () =>
                     player.playerAiInteractions.Interact(player.playerRenderer.IsSpriteFlipped);
 
                 Debug.Log("Required components added.");
